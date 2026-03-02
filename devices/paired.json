@@ -29,7 +29,7 @@
           "operator.pairing"
         ],
         "createdAtMs": 1772424693689,
-        "lastUsedAtMs": 1772428527478
+        "lastUsedAtMs": 1772430647315
       }
     },
     "createdAtMs": 1772424693688,
@@ -39,8 +39,8 @@
     "deviceId": "168c8b39a9849032fadfd31be65a9a32fbf746a441dda848307fc418b48c6bd3",
     "publicKey": "L_rV6KNugPI-NYjgbD81LWXuimKQ-xQdz20iebpvT-4",
     "platform": "win32",
-    "clientId": "gateway-client",
-    "clientMode": "backend",
+    "clientId": "openclaw-probe",
+    "clientMode": "probe",
     "role": "operator",
     "roles": [
       "operator"

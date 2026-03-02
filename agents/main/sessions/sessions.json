@@ -227,7 +227,7 @@
       "accountId": "default"
     },
     "sessionId": "955dcf5f-71ca-4224-bb5f-12c507ff0d21",
-    "updatedAt": 1772428889639,
+    "updatedAt": 1772437402143,
     "deliveryContext": {
       "channel": "telegram",
       "to": "telegram:-1003333950418",
@@ -444,7 +444,7 @@
     "contextTokens": 128000,
     "systemPromptReport": {
       "source": "run",
-      "generatedAt": 1772428877968,
+      "generatedAt": 1772437395673,
       "sessionId": "955dcf5f-71ca-4224-bb5f-12c507ff0d21",
       "sessionKey": "agent:main:telegram:group:-1003333950418",
       "provider": "github-copilot",
@@ -457,9 +457,9 @@
         "sandboxed": false
       },
       "systemPrompt": {
-        "chars": 28518,
+        "chars": 28067,
         "projectContextChars": 11742,
-        "nonProjectContextChars": 16776
+        "nonProjectContextChars": 16325
       },
       "injectedWorkspaceFiles": [
         {
@@ -721,11 +721,11 @@
         ]
       }
     },
-    "inputTokens": 6007,
-    "outputTokens": 178,
-    "cacheRead": 4608,
+    "inputTokens": 746,
+    "outputTokens": 227,
+    "cacheRead": 50432,
     "cacheWrite": 0,
-    "totalTokens": 10615,
+    "totalTokens": 51178,
     "totalTokensFresh": true
   }
 }

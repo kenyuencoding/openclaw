@@ -1,8 +1,12 @@
 {
+  "meta": {
+    "lastTouchedVersion": "2026.2.26",
+    "lastTouchedAt": "2026-03-02T07:30:06.320Z"
+  },
   "wizard": {
-    "lastRunAt": "2026-03-02T03:51:19.978Z",
+    "lastRunAt": "2026-03-02T07:30:06.270Z",
     "lastRunVersion": "2026.2.26",
-    "lastRunCommand": "onboard",
+    "lastRunCommand": "configure",
     "lastRunMode": "local"
   },
   "auth": {
@@ -28,6 +32,16 @@
       "maxConcurrent": 4,
       "subagents": {
         "maxConcurrent": 8
+      }
+    }
+  },
+  "tools": {
+    "web": {
+      "search": {
+        "enabled": false
+      },
+      "fetch": {
+        "enabled": true
       }
     }
   },
@@ -110,9 +124,5 @@
         "enabled": true
       }
     }
-  },
-  "meta": {
-    "lastTouchedVersion": "2026.2.26",
-    "lastTouchedAt": "2026-03-02T03:51:20.028Z"
   }
 }
