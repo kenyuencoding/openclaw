@@ -28,7 +28,8 @@
           "operator.approvals",
           "operator.pairing"
         ],
-        "createdAtMs": 1772424693689
+        "createdAtMs": 1772424693689,
+        "lastUsedAtMs": 1772428527478
       }
     },
     "createdAtMs": 1772424693688,
@@ -45,22 +46,35 @@
       "operator"
     ],
     "scopes": [
-      "operator.read"
+      "operator.read",
+      "operator.admin",
+      "operator.write",
+      "operator.approvals",
+      "operator.pairing"
     ],
     "approvedScopes": [
-      "operator.read"
+      "operator.read",
+      "operator.admin",
+      "operator.write",
+      "operator.approvals",
+      "operator.pairing"
     ],
     "tokens": {
       "operator": {
-        "token": "edeBQlxGGzIDQIKiVUsUJotGGy8EOiOglCLkoZghFNs",
+        "token": "ndCcGoQA4UrlQaaPGH_0cNg60aZHaUWchHLlU0cb0Ek",
         "role": "operator",
         "scopes": [
-          "operator.read"
+          "operator.admin",
+          "operator.approvals",
+          "operator.pairing",
+          "operator.read",
+          "operator.write"
         ],
-        "createdAtMs": 1772424989610
+        "createdAtMs": 1772424989610,
+        "rotatedAtMs": 1772428743942
       }
     },
     "createdAtMs": 1772424989610,
-    "approvedAtMs": 1772424989610
+    "approvedAtMs": 1772428743942
   }
 }
