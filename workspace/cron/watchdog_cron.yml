@@ -1,0 +1,16 @@
+jobs:
+  - id: watchdog_plan
+    schedule: '*/10 * * * *' # every 10 minutes UTC (adjusted for runtime timezone if needed)
+    command: python C:\Users\n1sol\.openclaw\workspace\scripts\watchdog.py
+    description: 'Watchdog: alert if PLAN.md tasks are In Progress beyond threshold'
+    env:
+      PLAN_PATH: 'C:\\Users\\n1sol\\.openclaw\\workspace\\PLAN.md'
+      THRESHOLD_MINUTES: '10'
+    retain: 7
+  - id: daily_plan_status
+    schedule: '30 0 * * *' # 08:30 HKT -> 00:30 UTC
+    command: python C:\Users\n1sol\.openclaw\workspace\scripts\daily_plan_status.py
+    description: 'Daily PLAN.md status reporter'
+    env:
+      PLAN_PATH: 'C:\\Users\\n1sol\\.openclaw\\workspace\\PLAN.md'
+    retain: 14

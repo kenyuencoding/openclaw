@@ -1,0 +1,13 @@
+# OpenClaw cron manifest: daily 08:30 HKT
+# This file registers a cron job for the OpenClaw runtime. The job will run the script
+# scripts/daily_market_brief.py and post the generated PDF to Telegram using the message tool.
+
+jobs:
+  - id: daily_market_brief
+    schedule: '30 0 * * *' # 08:30 HKT is 00:30 UTC; OpenClaw cron uses UTC. Adjust if runtime differs.
+    command: python C:\Users\n1sol\.openclaw\workspace\scripts\daily_market_brief.py
+    description: "Daily Market & News Brief — runs at 08:30 HKT and posts PDF to Telegram via OpenClaw message tool"
+    env:
+      OPENCLAW_DELIVER_TO: 'telegram:8764955386'
+      THEME: 'dark'
+    retain: 7

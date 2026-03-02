@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Daily Market Brief</title>
+  <style>
+    /* CNBC-like light theme mobile-first styles (fixed typography and spacing) */
+    @page { size: 360px 800px; margin: 12px; }
+    body { font-family: Arial, Helvetica, sans-serif; margin: 0; background: #ffffff; color: #0b2340; -webkit-font-smoothing: antialiased; }
+    .cover { padding: 18px; text-align: left; background: #ffffff; }
+    .title { font-size: 40px; font-weight: 900; color:#0b2340; margin-bottom:6px }
+    .subtitle { font-size: 14px; color: #6b7788; margin-top:6px }
+    .section { padding: 14px 12px; border-bottom: 1px solid #eef2f6; }
+    .h { font-size: 22px; font-weight: 800; margin-bottom: 10px; color:#0b2340 }
+    .item { margin-bottom: 14px; padding:10px; background:#ffffff }
+    .card { border-radius:8px; padding:12px; background:#ffffff; box-shadow:0 1px 2px rgba(11,35,64,0.06); margin-bottom:12px }
+    .ticker { font-weight: 800; color: #0b2340; font-size:18px }
+    .small { color: #6b7788; font-size: 13px }
+    .one-col { display: block }
+    .col { width: 100% }
+    .headline { font-size: 20px; margin-bottom:8px; font-weight:800; line-height:1.2; hyphens:none; word-break:normal; overflow-wrap:normal }
+    .summary { font-size: 16px; color: #23344a; line-height:1.45 }
+    .impact { font-size: 14px; color: #55697a; margin-top:8px }
+    .source { font-size: 12px; color:#8b96a6; margin-top:6px }
+    .index { display:block; margin-bottom:12px }
+    .footer { padding:16px; font-size:12px; color:#93a6bd; text-align:center }
+  </style>
+</head>
+<body>
+  <div class="cover">
+    <div class="title">Daily Market & News Brief</div>
+    <div class="subtitle">Generated: {{ generated_at }}</div>
+    <div style="margin-top:12px">
+      {% for name, v in indices.items() %}
+        <div class="index"><span class="small">{{ name }}</span><div class="ticker">{{ v.last if v.last is not none else 'N/A' }}{% if v.change_pct is not none %} ({{ '%.2f'|format(v.change_pct) }}%) {% endif %}</div></div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="h">Top Headlines — United States (Top 5 per source)</div>
+    <div class="one-col">
+      {% for name, links in headlines.items() %}
+        <div class="headline">Source: {{ name }}</div>
+        {% for l in links[:5] %}
+          <div class="item"><div class="headline">{{ l.text }}</div><div class="summary">Source: {{ name }}</div></div>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="h">Top Stocks Watchlist</div>
+    <div>
+      {% for t,info in stocks.items() %}
+        <div class="item"><div class="ticker">{{ t }}</div><div class="summary">Last: {{ info.last if info.last is not none else 'N/A' }}{% if info.change_pct is not none %} • 1d: {{ '%.2f'|format(info.change_pct) }}%{% endif %}</div></div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="h">Global Headlines (Top 5 per source)</div>
+    <div>
+      {% for name, links in headlines.items() %}
+        <div class="headline">{{ name }}</div>
+        {% for l in links[:5] %}
+          <div class="item"><div class="headline">{{ l.text }}</div><div class="summary">Source: {{ name }}</div></div>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="footer">Produced by Eon • Data sources: CNBC / CNN / Reuters / AP / SCMP • Theme: Dark • Mobile-friendly font sizes</div>
+</body>
+</html>

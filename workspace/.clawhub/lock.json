@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "skills": {
+    "web": {
+      "version": "1.0.0",
+      "installedAt": 1772346660370
+    },
+    "local-web-search-skill": {
+      "version": "0.1.0",
+      "installedAt": 1772346729010
+    }
+  }
+}

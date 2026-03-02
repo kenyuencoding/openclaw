@@ -1,0 +1,5 @@
+agents/main/agent/auth-profiles.json
+credentials/
+identity/
+*.json.bak
+logs/
