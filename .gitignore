@@ -3,3 +3,7 @@ credentials/
 identity/
 *.json.bak
 logs/
+agents/main/sessions/*.jsonl
+workspace/*.docx
+workspace/briefing_runs/*.png
+agents/main/sessions/*.jsonl

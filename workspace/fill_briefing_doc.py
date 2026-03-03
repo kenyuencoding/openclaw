@@ -1,0 +1,98 @@
+from datetime import datetime
+from docx import Document
+from docx.shared import Pt, Mm
+from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
+import os
+
+timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+out = 'C:/Users/n1sol/.openclaw/workspace/briefing_market_cnbc_filled_{}.docx'.format(datetime.now().strftime('%Y%m%d_%H%M%S'))
+
+doc = Document()
+section = doc.sections[0]
+section.left_margin = Mm(12)
+section.right_margin = Mm(12)
+
+p = doc.add_paragraph()
+r = p.add_run(f"Briefing — {timestamp}")
+r.bold = True
+r.font.size = Pt(18)
+p.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+
+doc.add_paragraph()
+
+def add_ticker(ticker, name, chart_path, en, cn, wy_en, wy_cn, strat_en, strat_cn):
+    h = doc.add_paragraph()
+    h.add_run(f"{ticker} - {name}\n").bold = True
+    try:
+        if os.path.exists(chart_path):
+            doc.add_picture(chart_path, width=Mm(160))
+    except Exception:
+        pass
+    doc.add_paragraph()
+    doc.add_paragraph('English summary:').bold = True
+    doc.add_paragraph(en)
+    doc.add_paragraph('中文摘要:').bold = True
+    doc.add_paragraph(cn)
+    doc.add_paragraph('Wyckoff analysis (EN):').bold = True
+    doc.add_paragraph(wy_en)
+    doc.add_paragraph('Wyckoff 分析 (中):').bold = True
+    doc.add_paragraph(wy_cn)
+    doc.add_paragraph('Options strategy (vertical spread) (EN):').bold = True
+    doc.add_paragraph(strat_en)
+    doc.add_paragraph('選擇權策略 (牛/熊價差) (中):').bold = True
+    doc.add_paragraph(strat_cn)
+    doc.add_page_break()
+
+base='C:/Users/n1sol/.openclaw/workspace/briefing_runs'
+entries = [
+ ('AVAV','AeroVironment, Inc.', os.path.join(base,'AVAV_20260303_075814.png'),
+  'AeroVironment is seeing notable intraday moves after recent contract news; traders are reacting to defense sector flows. Volume spikes suggest short-term speculative interest.',
+  '在近期合約消息後，AeroVironment 股價出現顯著盤中波動；交易者對國防類股的資金流入做出反應。成交量激增顯示短期投機興趣。',
+  'Price action shows a recent accumulation phase with higher lows forming—watch for a breakout above resistance to confirm markup.',
+  '價格行為顯示近期處於累積階段，形成較高的低點——觀察是否突破阻力以確認上漲階段。',
+  'Consider a bullish vertical call spread (buy near-term call, sell higher strike) to limit risk while capturing upside if breakout occurs.',
+  '考慮買入短期期權看漲價差（買入近月看漲，賣出較高履約價）以在突破時限制風險並捕捉上漲空間.'
+ ),
+ ('NVDA','NVIDIA Corporation', os.path.join(base,'NVDA_20260302_192609.png'),
+  'NVIDIA remains among the most active US stocks with heavy volume today; shares pulled back on profit-taking after recent gains. Traders watch guidance ahead of upcoming earnings and remain focused on AI-driven demand trends.',
+  'NVIDIA 仍為最活躍美股之一，今日成交量大；在近期漲幅後出現獲利回吐。交易者關注財報前的指引，並持續關注 AI 驅動的需求趨勢。',
+  'Wyckoff sequence suggests re-accumulation after a sell-off with spring tests; monitor for a sign of strength (SOS) on rising volume.',
+  'Wyckoff 序列顯示在回檔後可能出現再累積與測試彈性；監測量能上升的強勢訊號（SOS）。',
+  'A bull call vertical (buy near-term ATM call, sell OTM call 1-2 strikes higher) limits cost while benefiting from continued upside.',
+  '牛市看漲價差（買入近月平值看漲，賣出高行使價看漲）可限制成本，同時受益於持續上漲.'
+ ),
+ ('AES','AES Corporation', os.path.join(base,'AES_20260303_075814.png'),
+  'AES is moving after energy sector headlines; traders are weighing utility demand and renewables positioning. Volatility is elevated as macro and sector news arrives.',
+  'AES 在能源類股新聞後出現波動；交易者評估公用事業需求與再生能源布局。宏觀與產業消息使波動性上升。',
+  'Price shows distribution signs near resistance; watch for test levels and potential supply absorption.',
+  '價格在阻力附近顯示分配訊號；注意測試區間與供給吸收情形。',
+  'A neutral-to-bullish vertical (debit call spread) can capture upside while capping risk amidst sector volatility.',
+  '中性至看多的買權價差（付費型看漲價差）可在產業波動中捕捉上行並限制風險.'
+ ),
+ ('COH','Cohesity, Inc.', os.path.join(base,'COH_20260303_075814.png'),
+  'Cohesity is active after corporate updates; momentum traders are reacting to product roadmap clarity. The stock shows episodic volume surges tied to news.',
+  'Cohesity 在公司更新後交易活躍；趨勢交易者對產品路線圖的明朗化作出反應。股價與新聞相關出現成交量提升。',
+  'Wyckoff setup indicates potential markup if support holds and volume confirms move.',
+  'Wyckoff 佈局顯示若支撐持穩且量能確認，可能進入上漲階段。',
+  'A directional vertical spread (buy call, sell higher strike) offers asymmetric exposure with limited downside.',
+  '方向性買權價差（買入看漲，賣出較高履約價）提供非對稱曝險並限制下行.'
+ ),
+ ('NCLH','Norwegian Cruise Line Holdings', os.path.join(base,'NCLH_20260303_075814.png'),
+  'Cruise names move on travel demand news; NCLH shows sector sensitivity as bookings data and capacity updates influence sentiment. Short-term volatility tied to travel headlines.',
+  '郵輪類股受旅遊需求消息影響；NCLH 對預訂數據與運力更新較為敏感。短期波動與旅遊新聞相關。',
+  'Wyckoff reading suggests testing of support areas; a successful test could precede relief rally.',
+  'Wyckoff 讀法顯示支撐區測試；若測試成功，可能出現回升行情。',
+  'Consider a debit call spread to participate in recovery while limiting premium outlay.',
+  '考慮付費型看漲價差以在復甦中參與，同時限制權利金支出.'
+ )
+]
+
+for e in entries:
+    add_ticker(*e)
+
+# Footer
+f = doc.add_paragraph()
+f.add_run('Sources: CNBC (top movers), Yahoo Finance (price data). Generated by Yuetki')
+
+doc.save(out)
+print(out)
